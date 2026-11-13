@@ -2469,6 +2469,35 @@ body.embed .req-pane{display:none;}
   body.device-tablet .phone-frame{width:100% !important;}
   body.device-tablet .phone-screen{height:100dvh !important;}
 }
+
+/* ===== Account record (Salesforce mobile style) ===== */
+#screen-accountrecord{background:#fff;}
+.sfr-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(110px + env(safe-area-inset-bottom));}
+.sfr-scroll::-webkit-scrollbar{display:none;}
+.sfr-actions{display:flex;justify-content:space-around;padding:10px 6px 12px;border-bottom:1px solid #e5e5e5;background:#fff;}
+.sfr-act{display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:0;font:inherit;font-size:12.5px;color:#3e3e3c;cursor:pointer;min-width:64px;}
+.sfr-act-ic{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+.sfr-act-ic svg{width:19px;height:19px;}
+.sfr-act-ic.edit{background:#3ba88c;}.sfr-act-ic.ai{background:#7f56d9;}.sfr-act-ic.call{background:#3ba88c;}.sfr-act-ic.more{background:#8a8f99;}
+.sfr-head{display:flex;align-items:center;gap:12px;background:#f3f3f3;padding:14px 16px;}
+.sfr-head-ic{width:44px;height:44px;border-radius:8px;background:#5867e8;display:flex;align-items:center;justify-content:center;flex:none;}
+.sfr-head-ic svg{width:28px;height:28px;}
+.sfr-head-obj{font-size:13px;color:#444;}
+.sfr-head-name{font-size:21px;font-weight:700;color:#181818;line-height:1.2;}
+.sfr-tabs{display:flex;gap:16px;padding:0 16px;border-bottom:1px solid #e5e5e5;overflow-x:auto;}
+.sfr-tabs::-webkit-scrollbar{display:none;}
+.sfr-tabs button{background:none;border:0;font:inherit;font-size:13.5px;font-weight:600;color:#5c5c5c;padding:11px 0 9px;white-space:nowrap;border-bottom:3px solid transparent;cursor:pointer;}
+.sfr-tabs button.active{color:#0b5cab;border-bottom-color:#0b5cab;}
+.sfr-row{display:flex;gap:12px;padding:12px 16px;border-bottom:1px solid #e5e5e5;align-items:flex-start;}
+.sfr-lab{flex:0 0 42%;font-size:13.5px;color:#5c5c5c;line-height:1.35;}
+.sfr-val{flex:1;min-width:0;font-size:14.5px;color:#181818;line-height:1.35;word-break:break-word;}
+.sfr-link{color:#0b5cab;}
+.sfr-info{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border-radius:50%;background:#0b5cab;color:#fff;font-size:9.5px;font-weight:700;font-style:italic;margin-left:4px;vertical-align:1px;}
+.sfr-owner{display:inline-flex;align-items:center;gap:8px;}
+.sfr-owner img{width:24px;height:24px;border-radius:50%;object-fit:cover;}
+.sfr-pill{display:inline-block;background:#fef1d6;color:#8c4b02;border-radius:10px;padding:1px 9px;font-size:12.5px;font-weight:600;}
+.sfr-ok{color:#2e844a;font-weight:600;}
+.sfr-gap{height:16px;background:#f3f3f3;}
 </style>
 </head>
 <body class="df-current presenter" data-new-gr-c-s-check-loaded="14.1309.0" data-gr-ext-installed="">
@@ -5231,48 +5260,56 @@ body.embed .req-pane{display:none;}
         <div class="mfg-acc-sortbar">
           <span>Sort by:</span>
           <select aria-label="Sort accounts">
-            <option>Last Visit</option>
-            <option>Distance</option>
-            <option>Tier</option>
+            <option>Total MW</option>
             <option>Name</option>
-            <option>Open Tasks</option>
+            <option>KAM Segment</option>
+            <option>Touchpoint Status</option>
           </select>
         </div>
       </div>
       <div class="mfg-acc-list">
-        <div class="mfg-acc-card" onclick="openAccountDirect()">
-          <div class="m-dealer-logo avtint-blue">EL</div>
+        <div class="mfg-acc-card" onclick="openAccountRecord()">
+          <div class="m-dealer-logo has-logo"><img src="assets/site-electrabel-doel.jpg" alt="Electrabel NV site" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div>
           <div class="mfg-acc-info">
             <div class="mfg-acc-name">Electrabel NV</div>
-            <div class="mfg-acc-tags"><span class="mfg-acc-tier premium">Premium</span><span class="mfg-acc-health healthy">Healthy</span></div>
-            <div class="mfg-acc-meta">Last visited: Today</div>
+            <div class="mfg-acc-tags"><span class="mfg-acc-tier premium">KAM Energy</span><span class="mfg-acc-health healthy">On track</span></div>
+            <div class="mfg-acc-meta">Market Party · <b>4,714 MW</b> total</div>
           </div>
           <button class="mfg-tb-dots" onclick="event.stopPropagation()" aria-label="Account options">⋮</button>
         </div>
         <div class="mfg-acc-card" onclick="openAccountDirect()">
-          <div class="m-dealer-logo avtint-teal">VP</div>
+          <div class="m-dealer-logo avtint-purple">AM</div>
           <div class="mfg-acc-info">
-            <div class="mfg-acc-name">Vlaanderen Plant Foods NV</div>
-            <div class="mfg-acc-tags"><span class="mfg-acc-tier standard">Standard</span><span class="mfg-acc-health risk">At Risk</span></div>
-            <div class="mfg-acc-meta">Last visited: 19 May 2026</div>
+            <div class="mfg-acc-name">ArcelorMittal Belgium NV</div>
+            <div class="mfg-acc-tags"><span class="mfg-acc-tier premium">KAM Industry</span><span class="mfg-acc-health healthy">On track</span></div>
+            <div class="mfg-acc-meta">Grid User · <b>930 MW</b> total</div>
           </div>
           <button class="mfg-tb-dots" onclick="event.stopPropagation()" aria-label="Account options">⋮</button>
         </div>
         <div class="mfg-acc-card" onclick="openAccountDirect()">
-          <div class="m-dealer-logo avtint-purple">FL</div>
+          <div class="m-dealer-logo has-logo"><img src="assets/site-basf.jpeg" alt="BASF Antwerpen NV site" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div>
           <div class="mfg-acc-info">
-            <div class="mfg-acc-name">Fluvius System Operator</div>
-            <div class="mfg-acc-tags"><span class="mfg-acc-tier select">Select</span><span class="mfg-acc-health healthy">Healthy</span></div>
-            <div class="mfg-acc-meta">Last visited: 20 May 2026</div>
+            <div class="mfg-acc-name">BASF Antwerpen NV</div>
+            <div class="mfg-acc-tags"><span class="mfg-acc-tier premium">KAM Industry</span><span class="mfg-acc-health healthy">On track</span></div>
+            <div class="mfg-acc-meta">Grid User · <b>480 MW</b> total</div>
           </div>
           <button class="mfg-tb-dots" onclick="event.stopPropagation()" aria-label="Account options">⋮</button>
         </div>
         <div class="mfg-acc-card" onclick="openAccountDirect()">
-          <div class="m-dealer-logo avtint-amber">CR</div>
+          <div class="m-dealer-logo avtint-green">CP</div>
           <div class="mfg-acc-info">
-            <div class="mfg-acc-name">CREG</div>
-            <div class="mfg-acc-tags"><span class="mfg-acc-tier premium">Premium</span><span class="mfg-acc-health healthy">Healthy</span></div>
-            <div class="mfg-acc-meta">Last visited: 21 May 2026</div>
+            <div class="mfg-acc-name">C-Power NV</div>
+            <div class="mfg-acc-tags"><span class="mfg-acc-tier premium">KAM Energy</span><span class="mfg-acc-health healthy">On track</span></div>
+            <div class="mfg-acc-meta">Grid User · <b>325 MW</b> total</div>
+          </div>
+          <button class="mfg-tb-dots" onclick="event.stopPropagation()" aria-label="Account options">⋮</button>
+        </div>
+        <div class="mfg-acc-card" onclick="openAccountDirect()">
+          <div class="m-dealer-logo avtint-rose">ND</div>
+          <div class="mfg-acc-info">
+            <div class="mfg-acc-name">Northsea Hyperscale DC</div>
+            <div class="mfg-acc-tags"><span class="mfg-acc-tier premium">KAM Industry</span><span class="mfg-acc-health healthy">On track</span></div>
+            <div class="mfg-acc-meta">Candidate Grid User · <b>300 MW</b> total</div>
           </div>
           <button class="mfg-tb-dots" onclick="event.stopPropagation()" aria-label="Account options">⋮</button>
         </div>
@@ -5280,22 +5317,66 @@ body.embed .req-pane{display:none;}
           <div class="m-dealer-logo avtint-green">FX</div>
           <div class="mfg-acc-info">
             <div class="mfg-acc-name">Flexcity Belgium NV</div>
-            <div class="mfg-acc-tags"><span class="mfg-acc-tier select">Select</span><span class="mfg-acc-health watch">Watchlist</span></div>
-            <div class="mfg-acc-meta">Last visited: 22 May 2026</div>
+            <div class="mfg-acc-tags"><span class="mfg-acc-tier premium">KAM Energy</span><span class="mfg-acc-health healthy">On track</span></div>
+            <div class="mfg-acc-meta">Market Party · <b>80 MW</b> total</div>
           </div>
           <button class="mfg-tb-dots" onclick="event.stopPropagation()" aria-label="Account options">⋮</button>
         </div>
         <div class="mfg-acc-card" onclick="openAccountDirect()">
-          <div class="m-dealer-logo avtint-rose">HB</div>
+          <div class="m-dealer-logo has-logo"><img src="assets/site-vlaanderen-plant-foods.jpeg" alt="Vlaanderen Plant Foods NV site" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div>
           <div class="mfg-acc-info">
-            <div class="mfg-acc-name">Hainaut BESS SRL</div>
-            <div class="mfg-acc-tags"><span class="mfg-acc-tier premium">Premium</span><span class="mfg-acc-health healthy">Healthy</span></div>
-            <div class="mfg-acc-meta">Last visited: 23 May 2026</div>
+            <div class="mfg-acc-name">Vlaanderen Plant Foods NV</div>
+            <div class="mfg-acc-tags"><span class="mfg-acc-tier premium">KAM Energy</span><span class="mfg-acc-health healthy">On track</span></div>
+            <div class="mfg-acc-meta">Grid User · <b>5 MW</b> total</div>
+          </div>
+          <button class="mfg-tb-dots" onclick="event.stopPropagation()" aria-label="Account options">⋮</button>
+        </div>
+        <div class="mfg-acc-card" onclick="openAccountDirect()">
+          <div class="m-dealer-logo has-logo"><img src="assets/site-fluvius.jpeg" alt="Fluvius System Operator CV site" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;"></div>
+          <div class="mfg-acc-info">
+            <div class="mfg-acc-name">Fluvius System Operator CV</div>
+            <div class="mfg-acc-tags"><span class="mfg-acc-tier premium">KAM DSO</span><span class="mfg-acc-health watch">Due soon</span></div>
+            <div class="mfg-acc-meta">DSO / CDSO · <b>0 MW</b> total</div>
           </div>
           <button class="mfg-tb-dots" onclick="event.stopPropagation()" aria-label="Account options">⋮</button>
         </div>
       </div>
     </div><!-- /screen-accountlist -->
+
+    <!-- ================================================================
+         ACCOUNT RECORD — Salesforce mobile style (opened from Accounts list)
+         ================================================================ -->
+    <div class="screen" id="screen-accountrecord">
+      <div class="sfr-scroll">
+        <div class="sfr-actions">
+          <button class="sfr-act" type="button" onclick="p1QuickCreate('Edit','Opens Edit on Electrabel NV (mock).')"><span class="sfr-act-ic edit"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><span>Edit</span></button>
+          <button class="sfr-act" type="button" onclick="p1QuickCreate('AI briefing','Opens AI briefing on Electrabel NV (mock).')"><span class="sfr-act-ic ai"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2l1.9 5.6L19.5 9.5l-5.6 1.9L12 17l-1.9-5.6L4.5 9.5l5.6-1.9z"/><path d="M19 14l.8 2.2 2.2.8-2.2.8L19 20l-.8-2.2-2.2-.8 2.2-.8z"/></svg></span><span>AI briefing</span></button>
+          <button class="sfr-act" type="button" onclick="p1QuickCreate('Log a Call','Opens Log a Call on Electrabel NV (mock).')"><span class="sfr-act-ic call"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span><span>Log a Call</span></button>
+          <button class="sfr-act" type="button" onclick="p1QuickCreate('More','Opens More on Electrabel NV (mock).')"><span class="sfr-act-ic more"><svg viewBox="0 0 24 24" fill="#fff"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></span><span>More</span></button>
+        </div>
+        <div class="sfr-head">
+          <div class="sfr-head-ic"><svg viewBox="0 0 24 24" fill="#fff"><path d="M3 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v4h4a2 2 0 0 1 2 2v10z" opacity=".95"/><g fill="#5867e8"><rect x="6" y="6" width="2" height="2"/><rect x="10" y="6" width="2" height="2"/><rect x="6" y="10" width="2" height="2"/><rect x="10" y="10" width="2" height="2"/><rect x="6" y="14" width="2" height="2"/><rect x="10" y="14" width="2" height="2"/><rect x="16" y="13" width="2" height="2"/><rect x="16" y="17" width="2" height="2"/></g></svg></div>
+          <div><div class="sfr-head-obj">Account</div><div class="sfr-head-name">Electrabel NV</div></div>
+        </div>
+        <div class="sfr-tabs"><button class="active" type="button">Details</button><button type="button" onclick="openAccountDirect()">Account 360</button><button type="button" onclick="showScreen('c360agreement')">Market Roles</button><button type="button" onclick="showScreen('c360forecast')">Access Points</button></div>
+        <div class="sfr-row"><div class="sfr-lab">Elia Account Type</div><div class="sfr-val">Market Party</div></div>
+        <div class="sfr-row"><div class="sfr-lab">KAM Segment</div><div class="sfr-val">KAM Energy</div></div>
+        <div class="sfr-row"><div class="sfr-lab">Market Roles</div><div class="sfr-val">Grid User; Access Contract Holder (ACH); BRP; BSP - aFRR; BSP - mFRR; OPA (Outage Planning Agent); CRM Capacity Provider</div></div>
+        <div class="sfr-row"><div class="sfr-lab">Neutrality Class</div><div class="sfr-val"><span class="sfr-pill">Confidential</span></div></div>
+        <div class="sfr-row"><div class="sfr-lab">Total MW (connected + open) <span class="sfr-info" title="Calculated">i</span></div><div class="sfr-val"><b>4,714.0</b></div></div>
+        <div class="sfr-row"><div class="sfr-lab">Connected capacity (MW) <span class="sfr-info" title="Calculated">i</span></div><div class="sfr-val">4,104.0</div></div>
+        <div class="sfr-row"><div class="sfr-lab">Open engagements (MW) <span class="sfr-info" title="Calculated">i</span></div><div class="sfr-val">610.0</div></div>
+        <div class="sfr-row"><div class="sfr-lab">Touchpoint Status</div><div class="sfr-val"><span class="sfr-ok">On track</span></div></div>
+        <div class="sfr-row"><div class="sfr-lab">Parent Account</div><div class="sfr-val"><span class="sfr-link">ENGIE SA</span></div></div>
+        <div class="sfr-row"><div class="sfr-lab">Sector</div><div class="sfr-val">Generation &amp; renewables</div></div>
+        <div class="sfr-row"><div class="sfr-lab">Region</div><div class="sfr-val">National</div></div>
+        <div class="sfr-row"><div class="sfr-lab">EIC Code</div><div class="sfr-val">11XELECTRABEL--Z</div></div>
+        <div class="sfr-row"><div class="sfr-lab">Customer Data Platform ID</div><div class="sfr-val">DEMO-ELECTRABEL</div></div>
+        <div class="sfr-row"><div class="sfr-lab">Website</div><div class="sfr-val"><span class="sfr-link">electrabel.be</span></div></div>
+        <div class="sfr-row"><div class="sfr-lab">Account Owner</div><div class="sfr-val"><span class="sfr-owner"><img src="assets/patrice-willemot.jpg" alt=""><span class="sfr-link">Patrice Willemot</span></span></div></div>
+        <div class="sfr-gap"></div>
+      </div>
+    </div><!-- /screen-accountrecord -->
 
     <!-- ================================================================
          19. ANALYTICS — Sales rep performance dashboard
@@ -6713,6 +6794,7 @@ var annotations={
   overflow:{text:'Quick Actions: Account 360, Reschedule, Directions, Email Summary, PDF, open Access Points, Edit, Change Contact, Cancel, Delete.',prd:'PRD: M6, M7',source:'mfgVisitActions overflow menu'},
   statuschange:{text:'Status transitions: Planned → In Progress → Completed/Paused/Rescheduled/Cancelled. Admin-configurable per KAM team.',prd:'PRD: M7',source:'Visit.Status picklist'},
   setup:{text:'Admin Setup, Step 3: admin checklist + template selection. Pre-built KAM templates: Account meeting, Grid & Outage Review, Joint planning (DSO), Site visit.',prd:'PRD: M1, M8',source:'mfgAtdSetup / mfgAtdConfigure'},
+  accountrecord:{text:'Account record (Salesforce mobile layout) with the Elia fields: account type, KAM segment, market roles, neutrality class, MW footprint, touchpoint status, EIC code, CDP ID, owner.',prd:'PRD: C1',source:'Account record page'},
   accountlist:{text:'Accounts list: searchable, sortable roster of Elia stakeholder accounts with tier, health status, score, open tasks and last-visit date. Tap a card to open Account 360.',prd:'PRD: C1, S4',source:'mfgAccountList'},
   taskboard:{text:'Customer Tasks board: searchable, prioritized task list across accounts with priority pills, due date and status. Figma 16908-77062.',prd:'PRD: M6, C1',source:'mfgCustomerTasks'},
   analytics:{text:'Sales rep performance dashboard: quota attainment, pipeline, win rate, target vs actual chart, quota donut, opportunity funnel, AI insights.',prd:'PRD: S4, R268+ AI',source:'mfgAnalytics / Agentforce insights'},
@@ -6755,6 +6837,7 @@ var appBarConfig={
   notes:    {title:'Visit Notes',     back:'detail',   right:'setup-agent'},
   completion:{title:'Visit summary', back:'detail',   right:'setup-agent'},
   accountlist:{title:'Accounts',      back:'landing',  right:'setup-agent', top:true},
+  accountrecord:{title:'Electrabel NV', back:'accountlist', right:'agent'},
   customer360:{title:'Electrabel NV',   back:'accountlist',right:'agent'},
   c360contacts:{title:'Key Contacts',  back:'customer360', right:'none'},
   c360agreement:{title:'Market Roles', back:'customer360', right:'none'},
@@ -7106,6 +7189,7 @@ var mDetailReturnTab=null;
 var mAccountDirect=false;
 /* Accounts-tab entry point: open the standalone Account 360 in direct/period mode. */
 function openAccountDirect(){mAccountDirect=true;showScreen('customer360',{back:'accountlist'});}
+function openAccountRecord(){var r=document.querySelector('#screen-accountrecord .sfr-scroll');if(r)r.scrollTop=0;showScreen('accountrecord',{back:'accountlist'});}
 /* Update the direct-account period comparison sub-label + active segment. */
 function c360SetPeriod(p){
   var labels={quarter:'This Quarter vs Last Quarter',month:'This Month vs Last Month',ytd:'YTD vs Last YTD'};
@@ -7287,7 +7371,7 @@ function showScreen(name, opts){
     overflow:'visit', statuschange:'visit', completionref:'visit', mandatoryref:'visit',
     cancelref:'visit', deleteref:'visit',
     taskboard:'task', createtask:'task', addnote:'task', taskdetail:'task',
-    accountlist:'accounts', customer360:'accounts', c360contacts:'accounts',
+    accountlist:'accounts', accountrecord:'accounts', customer360:'accounts', c360contacts:'accounts',
     c360agreement:'accounts', c360history:'accounts', c360forecast:'accounts', c360summary:'accounts',
     analytics:'analytics'
   };
